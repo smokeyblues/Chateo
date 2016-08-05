@@ -1,0 +1,32 @@
+<section ng-controller="HomeController">
+
+  </div>
+  <div class="jumbotron text-center" ng-hide="authentication.user">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+        <img alt="MEAN.JS" class="img-responsive text-center" src="modules/core/client/img/brand/ChateoLogo.png" />
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <p class="lead">
+        An app to connect seniors to family and loved ones
+      </p>
+    </div>
+    <div class="row">
+      <p>
+        <!-- <a class="btn btn-primary btn-lg" href="http://meanjs.org" target="_blank">Learn more</a> -->
+      </p>
+    </div>
+  </div>
+  <div ng-if="authentication.user">
+    <h2>Congratulations! You are logged in.</h2>
+    <p>
+      Search for a person you would like to chateo with
+    </p>
+    <div ng-include="'/modules/users/client/views/user/user-directory.client.view.html'"></div>
+    <!-- <div ng-include="'/api/users'"></div> -->
+
+  </div>
+
+</section>
