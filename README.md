@@ -1,1 +1,1 @@
-[![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
+Made with [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
