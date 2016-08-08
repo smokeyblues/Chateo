@@ -40,13 +40,13 @@ module.exports = {
     callbackURL: '/api/auth/facebook/callback'
   },
   twitter: {
-    clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
-    clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
+    clientID: process.env.TWITTER_KEY || 'b688GTvXpJnzdBIaOUF7E0Ehp',
+    clientSecret: process.env.TWITTER_SECRET || '0NGpGASJrc1EMfdPhTUADxWF2SypzTV3o3TkjFTBMzAXeQ7ND4',
     callbackURL: '/api/auth/twitter/callback'
   },
   google: {
-    clientID: process.env.GOOGLE_ID || 'APP_ID',
-    clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+    clientID: process.env.GOOGLE_ID || '462682334407-9huamqb05tfj9t6mahqlgq1jk32954dn.apps.googleusercontent.com',
+    clientSecret: process.env.GOOGLE_SECRET || 'Zq7jzFVkEFonyKW2UmlwRYjQ',
     callbackURL: '/api/auth/google/callback'
   },
   linkedin: {
