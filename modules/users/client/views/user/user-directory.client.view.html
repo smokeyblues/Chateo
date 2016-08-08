@@ -12,7 +12,7 @@
   <div class="list-group ng-hide" ng-show="search">
 
     <li ng-repeat="user in pagedSearchItems" ui-sref="users.user({userId: user._id})" class="list-group-item">
-      <button ng-click=chatInit()>
+      <button btn-link>
       <img ng-src="{{user.profileImageURL}}" alt="{{user.username}}" />
       <h4 class="list-group-item-heading" ng-bind="user.username"></h4>
     </li>
