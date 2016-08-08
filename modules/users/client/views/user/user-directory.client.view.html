@@ -11,8 +11,69 @@
   </div>
   <div class="list-group ng-hide" ng-show="search">
 
+    <style>
+    @import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
+
+    .list-group-item {
+      display: block;
+      text-align: center;
+      border: 0;
+      outline: 0;
+    }
+
+    .list-group-item img {
+      display: block;
+      float: left;
+      width: 80px;
+      outline: 0;
+      -webkit-border-radius: 12px;
+      border-radius: 12px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn:hover {
+      background-color: #5F5980;
+      opacity: 1;
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+
+    .btn {
+        display: inline-block;
+        width: 50vh;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 1rem;
+        line-height: 140%;
+        text-align: center;
+        text-decoration: none;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        /*border: 0px solid transparent;*/
+        border-radius: 4px;
+        background: #DFDFDF;
+        color: #5F5980;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+             -o-user-select: none;
+                user-select: none;
+    }
+
+    .list-group-item h4 {
+      font-family: 'Bree Serif', serif;
+      display: block;
+      float: left;
+      padding-left: 60px !important;
+    }
+    </style>
+
     <li ng-repeat="user in pagedSearchItems" ui-sref="users.user({userId: user._id})" class="list-group-item">
-      <button btn-link>
+      <button btn-link class="btn">
       <img ng-src="{{user.profileImageURL}}" alt="{{user.username}}" />
       <h4 class="list-group-item-heading" ng-bind="user.username"></h4>
     </li>
