@@ -1,4 +1,7 @@
 <div class="container" ng-controller="HeaderController">
+
+  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+
   <div class="navbar-header">
     <button class="navbar-toggle" type="button" ng-click="toggleCollapsibleMenu()">
       <span class="sr-only">Toggle navigation</span>
@@ -6,10 +9,10 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a ui-sref="home" class="navbar-brand">Chateo</a>
+    <a ui-sref="home" class="navbar-brand" style="font-family: 'Righteous', cursive; color:red; font-size:200%">Chateo</a>
   </div>
   <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-    <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);" ng-hide="user.roles='user'">
+    <ul class="nav navbar-nav" ng-if="menu.shouldRender(authentication.user);" ng-hide="user.roles='admin'">
       <li ng-repeat="item in menu.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}}" dropdown="item.type === 'dropdown'">
         <a ng-switch-when="dropdown" class="dropdown-toggle" dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
         <ul ng-switch-when="dropdown" class="dropdown-menu">

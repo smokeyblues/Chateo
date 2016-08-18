@@ -13,6 +13,10 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $location.path('/');
     }
 
+    // socket emitter code should go here in order to show user 'online'
+
+    // If user is signed in then broadcast to server via socket
+
     $scope.signup = function (isValid) {
       $scope.error = null;
 

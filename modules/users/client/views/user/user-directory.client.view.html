@@ -95,11 +95,11 @@
     <li ng-repeat="user in pagedSearchItems"
     class="list-group-item">
 
-    <!-- ui-sref="users.user({userId: user._id})" -->
       <a ng-href="https://meet.jit.si/{{authentication.user.username}}meets{{user.username}}">
       <button btn-link class="btn">
-      <img ng-src="{{user.profileImageURL}}" alt="{{user.username}}" />
-      <h4 class="list-group-item-heading" ng-bind="user.username"></h4>
+      <img ng-src="{{user.profileImageURL}}" alt="{{user.displayname}}" />
+      <h4 class="list-group-item-heading" ng-bind="user.displayName" ></h4>
+      <!-- <p ng-controller="ChatController" class="list-group-item" >is connected</p> -->
     </li>
   </button>
   </a>
