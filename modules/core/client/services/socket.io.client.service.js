@@ -8,7 +8,7 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
       // Connect only when authenticated
       if (Authentication.user) {
         this.socket = io();
-        // or is this where socket should notify server of online status -- I wrote this note
+        // or is this where socket should notify server of online status -- my note
       }
     };
     this.connect();

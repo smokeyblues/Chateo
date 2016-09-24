@@ -99,7 +99,12 @@
       <button btn-link class="btn">
       <img ng-src="{{user.profileImageURL}}" alt="{{user.displayname}}" />
       <h4 class="list-group-item-heading" ng-bind="user.displayName" ></h4>
-      <!-- <p ng-controller="ChatController" class="list-group-item" >is connected</p> -->
+      <h4 class="col-sm-6 text-left" ng-bind=user.online></h4>
+      <script>
+        socket.on('connected', function (data) {
+          console.log(data.text);
+        });
+      </script>
     </li>
   </button>
   </a>

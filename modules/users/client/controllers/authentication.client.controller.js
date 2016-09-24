@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator',
-  function ($scope, $state, $http, $location, $window, Authentication, PasswordValidator) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'Socket', 'PasswordValidator',
+  function ($scope, $state, $http, $location, $window, Authentication, Socket, PasswordValidator) {
     $scope.authentication = Authentication;
     $scope.popoverMsg = PasswordValidator.getPopoverMsg();
 
@@ -11,6 +11,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     // If user is signed in then redirect back home
     if ($scope.authentication.user) {
       $location.path('/');
+
     }
 
     // socket emitter code should go here in order to show user 'online'

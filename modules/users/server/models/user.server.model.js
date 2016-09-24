@@ -67,6 +67,13 @@ var UserSchema = new Schema({
     }]
   },
 
+  online: {
+    type: [{
+      type: String,
+      default: ''
+    }]
+  },
+
   password: {
     type: String,
     default: ''
