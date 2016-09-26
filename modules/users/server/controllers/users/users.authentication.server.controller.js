@@ -120,7 +120,7 @@ exports.oauthCallback = function (strategy) {
         }
 
         // return res.redirect(redirectURL || sessionRedirectURL || '/');
-          return res.redirect('http://localhost:3010');
+          return res.redirect('/');
       });
     })(req, res, next);
   };
