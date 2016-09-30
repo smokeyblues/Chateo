@@ -1,18 +1,21 @@
 <section ng-controller="UserDirectoryController">
+
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700" rel="stylesheet">
+
   <div class="page-header">
     <div class="row">
       <div class="col-md-4">
-        <h3>Who would you like to chat with?</h3>
       </div>
       <div class="col-md-4" style="margin-top: 2em">
-        <input class="form-control col-md-4" autofocus type="text" ng-model="search" placeholder="Search" ng-change="figureOutItemsToDisplay()" />
+        <h3>Who would you like to chat with?</h3>
+        <input class="form-control col-md-10 col-sm-6 col-xs-6" autofocus type="text" ng-model="search" placeholder="Search by name or email" ng-change="figureOutItemsToDisplay()" />
       </div>
     </div>
   </div>
   <div class="list-group ng-hide" ng-show="search">
 
     <style>
-    @import url("https://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
+    /*@import url("https://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");*/
 
     ul.pagination {
       /*display: block;*/
@@ -90,7 +93,7 @@
     }
     </style>
 
-    <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination"></pagination>
+    <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination center"></pagination>
 
     <li ng-repeat="user in pagedSearchItems"
     class="list-group-item">
@@ -110,5 +113,5 @@
   </a>
   </div>
 
-  <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination" style="align-items: center;"></pagination>
+  <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination ng-hide" ng-show="search" style="align-items: center;"></pagination>
 </section>
