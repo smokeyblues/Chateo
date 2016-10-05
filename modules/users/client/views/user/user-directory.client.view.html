@@ -111,7 +111,10 @@
     </li>
   </button>
   </a>
-  </div>
+</div>
+<div class="ng-hide" ng-show>
+  {{user.username}} has invited to chat. Would you like to join?
+</div>
 
   <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination ng-hide" ng-show="search" style="align-items: center;"></pagination>
 </section>
