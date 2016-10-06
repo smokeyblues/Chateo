@@ -11,18 +11,12 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       });
     });
 
-    // Home state routing
+    // state routing
     $stateProvider
       .state('contact', {
         url: '/contact',
         templateUrl: 'modules/core/client/views/contact.client.view.html',
         controller: 'ContactController',
-        controllerAs: 'vm'
-      })
-      .state('googleaab1744130d17c66', {
-        url: '/googleaab1744130d17c66',
-        templateUrl: 'modules/core/client/views/googleaab1744130d17c66.client.view.html',
-        controller: 'Googleaab1744130d17c66Controller',
         controllerAs: 'vm'
       })
       .state('about', {

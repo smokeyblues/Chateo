@@ -37,7 +37,6 @@ _site/
 *.bak
 *.swp
 logs/
-build/
 notes
 
 # Sublime editor
