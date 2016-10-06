@@ -38,6 +38,7 @@ _site/
 *.swp
 logs/
 notes
+troubleshooting/
 
 # Sublime editor
 # ==============
