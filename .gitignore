@@ -37,6 +37,7 @@ _site/
 *.bak
 *.swp
 logs/
+builds/
 notes
 troubleshooting/
 
