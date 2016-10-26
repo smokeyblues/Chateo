@@ -28,7 +28,7 @@ ul.pagination {
   margin-bottom: 10px;
 }
 
-/*.btn:hover {
+.btn:hover {
   background-color: #5F5980;
   opacity: 1;
   -webkit-transform: scale(1.2);
@@ -58,7 +58,7 @@ ul.pagination {
         -ms-user-select: none;
          -o-user-select: none;
             user-select: none;
-}*/
+}
 
 .list-group-item h4 {
   font-family: 'Bree Serif', serif;

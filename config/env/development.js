@@ -66,7 +66,7 @@ module.exports = {
     sandbox: true
   },
   mailer: {
-    from: process.env.MAILER_FROM || 'admin@chateo.com',
+    from: process.env.MAILER_FROM || 'admin@yakkee.com',
     options: {
       service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
       auth: {

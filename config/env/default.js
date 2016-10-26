@@ -2,8 +2,8 @@
 
 module.exports = {
   app: {
-    title: 'Chateo',
-    description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
+    title: 'Yakkee',
+    description: 'The app that connects seniors with family and friends',
     keywords: 'mongodb, express, angularjs, node.js, mongoose, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
