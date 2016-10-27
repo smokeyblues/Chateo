@@ -1,5 +1,84 @@
 <section ng-controller="UserDirectoryController">
 
+<style>
+  /*@import url("https://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");*/
+
+  ul.pagination {
+    /*display: block;*/
+    margin: auto;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+    border: 0;
+    outline: 0;
+  }
+
+  .list-group-item {
+    display: block;
+    text-align: center;
+    border: 0;
+    outline: 0;
+  }
+
+  .list-group-item img {
+    display: block;
+    float: left;
+    width: 80px;
+    outline: 0;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .btn:hover {
+    background-color: #5F5980;
+    opacity: 1;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+
+  .btn {
+      display: inline-block;
+      width: 50vh;
+      padding: 6px 12px;
+      margin-bottom: 0;
+      font-size: 1rem;
+      line-height: 140%;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      /*border: 0px solid transparent;*/
+      border-radius: 4px;
+      background: #DFDFDF;
+      color: #5F5980;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+           -o-user-select: none;
+              user-select: none;
+  }
+
+  .list-group-item h4 {
+    font-family: 'Bree Serif', serif;
+    font-size: 20px;
+    display: block;
+    float: left;
+    padding-left: 60px !important;
+  }
+
+  .pagination {
+    align-items: center;
+    text-align: center !important;
+    margin: 0px !important;
+    float: none;
+  }
+</style>
+
   <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700" rel="stylesheet">
 
   <div class="page-header">
@@ -12,92 +91,13 @@
       </div>
     </div>
   </div>
-  <div class="list-group ng-hide" ng-show="search">
+  <div class="list-group ng-hide  col-md-4 col-md-offset-4" ng-show="search" align="center">
 
-    <style>
-    /*@import url("https://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");*/
 
-    ul.pagination {
-      /*display: block;*/
-      margin: auto;
-      align-self: center;
-      align-items: center;
-      text-align: center;
-      border: 0;
-      outline: 0;
-    }
 
-    .list-group-item {
-      display: block;
-      text-align: center;
-      border: 0;
-      outline: 0;
-    }
+    <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination"></pagination>
 
-    .list-group-item img {
-      display: block;
-      float: left;
-      width: 80px;
-      outline: 0;
-      -webkit-border-radius: 12px;
-      border-radius: 12px;
-      margin-right: 10px;
-      margin-bottom: 10px;
-    }
-
-    .btn:hover {
-      background-color: #5F5980;
-      opacity: 1;
-      -webkit-transform: scale(1.2);
-      -moz-transform: scale(1.2);
-      -ms-transform: scale(1.2);
-      transform: scale(1.2);
-    }
-
-    .btn {
-        display: inline-block;
-        width: 50vh;
-        padding: 6px 12px;
-        margin-bottom: 0;
-        font-size: 1rem;
-        line-height: 140%;
-        text-align: center;
-        text-decoration: none;
-        white-space: nowrap;
-        vertical-align: middle;
-        cursor: pointer;
-        /*border: 0px solid transparent;*/
-        border-radius: 4px;
-        background: #DFDFDF;
-        color: #5F5980;
-        -webkit-user-select: none;
-           -moz-user-select: none;
-            -ms-user-select: none;
-             -o-user-select: none;
-                user-select: none;
-    }
-
-    .list-group-item h4 {
-      font-family: 'Bree Serif', serif;
-      font-size: 20px;
-      display: block;
-      float: left;
-      padding-left: 60px !important;
-    }
-
-    .pagination {
-      align-items: center;
-      text-align: center !important;
-      margin: 0px !important;
-      float: none;
-    }
-    </style>
-
-    <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination center"></pagination>
-
-    <li ng-repeat="user in pagedSearchItems"
-    class="list-group-item">
-
+    <li ng-repeat="user in pagedSearchItems" class="list-group-item" align="center">
       <a ng-href="https://meet.jit.si/{{authentication.user.username}}meets{{user.username}}">
       <button btn-link class="btn">
       <img ng-src="{{user.profileImageURL}}" alt="{{user.displayname}}" />
@@ -108,13 +108,16 @@
           console.log(data.text);
         });
       </script>
-    </li>
-  </button>
-  </a>
+      </li>
+      </button>
+      </a>
 </div>
 <div class="ng-hide" ng-show>
   {{user.username}} has invited to chat. Would you like to join?
 </div>
 
-  <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination ng-hide" ng-show="search" style="align-items: center;"></pagination>
+<div class="list-group ng-hide  col-md-4 col-md-offset-4" align="center" ng-show="search">
+    <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination ng-hide col-md-offset-4" ng-show="search" style="align-items: center;"></pagination>
+</div>
+
 </section>
