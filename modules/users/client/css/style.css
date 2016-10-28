@@ -29,8 +29,9 @@ ul.pagination {
 }
 
 .btn:hover {
+  color: black;
   background-color: #5F5980;
-  opacity: 1;
+  opacity: 0.75;
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
