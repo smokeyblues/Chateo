@@ -3,15 +3,22 @@
 
 
   <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 
   <div class="page-header">
     <div class="row">
       <div class="col-md-4">
       </div>
-      <div class="col-md-4" style="margin-top: 2em">
-        <h3>Who would you like to chat with?</h3>
-        <input class="form-control col-md-10 col-sm-6 col-xs-6" autofocus type="text" ng-model="search" placeholder="Search by name or email" ng-change="figureOutItemsToDisplay()" />
+      <div class="input-group">
+        <div class="col-md-10" style="margin-top: 2em">
+          <h3>Who would you like to chat with?</h3>
+          <input class="form-control has-feedback col-md-10 col-sm-6 col-xs-6" autofocus type="text" ng-model="search" placeholder="Search by name or email" ng-change="figureOutItemsToDisplay()" />
+          <!-- <span class="input-group-addon form-control-feedback pull-right"> -->
+                <i class="fa fa-microphone input-group-addon form-control-feedback pull-right" style="position: relative; top: -34px; width: 35px;"></i>
+          <!-- </span> -->
+        </div>
       </div>
+
     </div>
   </div>
   <div class="list-group ng-hide  col-md-4 col-md-offset-4" ng-show="search" align="center">
