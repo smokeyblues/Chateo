@@ -13,9 +13,13 @@
         <div class="col-md-10" style="margin-top: 2em">
           <h3>Who would you like to chat with?</h3>
           <input class="form-control has-feedback col-md-10 col-sm-6 col-xs-6" autofocus type="text" ng-model="search" placeholder="Search by name or email" ng-change="figureOutItemsToDisplay()" />
-          <!-- <span class="input-group-addon form-control-feedback pull-right"> -->
-                <i class="fa fa-microphone input-group-addon form-control-feedback pull-right" style="position: relative; top: -34px; width: 35px;"></i>
-          <!-- </span> -->
+
+
+          <div class="input-group-addon  pull-right" style="position: relative; top: -34px; left: 35px; width: 35px; height: 35px; padding: 5px; cursor: pointer;" ng-click="webSpeech();">
+                <i class="fa fa-microphone"></i>
+          </div>
+
+
         </div>
       </div>
 
