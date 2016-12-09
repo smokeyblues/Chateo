@@ -5,27 +5,27 @@
   <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
 
-  <div class="page-header">
+  <div class="page-header" style="border: none;">
     <div class="row">
       <div class="col-md-4">
       </div>
-      <div class="input-group">
-        <div class="col-md-10" style="margin-top: 2em">
-          <h3>Who would you like to chat with?</h3>
-          <input class="form-control has-feedback col-md-10 col-sm-6 col-xs-6" autofocus type="text" ng-model="search" placeholder="Search by name or email" ng-change="figureOutItemsToDisplay()" />
+      <div class="input-group col-md-4">
+        <div class="col-xs-12" style="margin-top: 2em">
+          <h3 ng-if="!search">{{placeholder}}</h3>
+          <input class="form-control has-feedback col-xs-12" autofocus type="text" ng-model="search" placeholder="Search by name or email" ng-change="figureOutItemsToDisplay()" />
 
 
-          <div class="input-group-addon  pull-right" style="position: relative; top: -34px; left: 35px; width: 35px; height: 35px; padding: 5px; cursor: pointer;" ng-click="webSpeech();">
+          <div class="input-group-addon  pull-right" style="position: relative; top: -35px; width: 35px; height: 35px; padding: 5px; cursor: pointer; z-index: 100;" ng-click="webSpeech();">
                 <i class="fa fa-microphone"></i>
           </div>
-
-
+          <div ng-if="$scope.micIsOn">
+            <h3>Hi! I'm listening.</h3>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
-  <div class="list-group ng-hide  col-md-4 col-md-offset-4" ng-show="search" align="center">
+  <div class="list-group ng-hide col-md-4 col-md-offset-4" ng-show="search" align="center">
 
 
 
@@ -33,7 +33,7 @@
 
     <li ng-repeat="user in pagedSearchItems" class="list-group-item" align="center">
       <a ng-href="https://meet.jit.si/{{authentication.user.username}}meets{{user.username}}">
-      <button btn-link class="btn">
+      <button btn-link class="btn" style="width:100%;">
       <img ng-src="{{user.profileImageURL}}" alt="{{user.displayname}}" />
       <h4 class="list-group-item-heading" ng-bind="user.displayName" ></h4>
       <h4 class="col-sm-6 text-left" ng-bind=user.online></h4>
@@ -50,7 +50,7 @@
   {{user.username}} has invited to chat. Would you like to join?
 </div>
 
-<div class="list-group ng-hide  col-md-4 col-md-offset-4" align="center" ng-show="search">
+<div class="list-group ng-hide col-md-4 col-md-offset-4" style="border: none;" align="center" ng-show="search">
     <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()" class="pagination ng-hide col-md-offset-4" ng-show="search" style="align-items: center;"></pagination>
 </div>
 

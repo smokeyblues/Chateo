@@ -9,14 +9,14 @@ angular.module('users.user').controller('UserDirectoryController', ['$scope', '$
       });
       $scope.grammar = '#JSGF V1.0; grammar userNames; public <userName> = ' + $scope.userNames.join(' | ') + ' ;'
       $scope.buildPager();
+      $scope.micIsOn = false;
+      console.log("micIsOn: " + $scope.micIsOn);
       console.log($scope.userNames);
     });
 
-    console.log("the controller is here.");
-
     $scope.buildPager = function () {
       $scope.pagedSearchItems = [];
-      $scope.itemsPerPage = 15;
+      $scope.itemsPerPage = 8;
       $scope.currentPage = 1;
       $scope.figureOutItemsToDisplay();
     };
@@ -35,6 +35,8 @@ angular.module('users.user').controller('UserDirectoryController', ['$scope', '$
       $scope.figureOutItemsToDisplay();
     };
 
+    $scope.placeholder ="Who would you like to chat with?";
+
     var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
     var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
     var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
@@ -51,16 +53,24 @@ angular.module('users.user').controller('UserDirectoryController', ['$scope', '$
     $scope.recognition.maxAlternatives = 1;
 
     $scope.webSpeech = function () {
-      // console.log($scope.grammar);
       $scope.recognition.start();
       console.log('Ready to receive voice command');
+      $scope.placeholder ="Please say the name of the person you would like to chat with";
+      $scope.micIsOn = true;
     };
 
     $scope.recognition.onresult = function(event) {
       var last = event.results.length - 1;
-      var name = event.results[last][0].transcript;
+      $scope.micIsOn = true;
+      $scope.name = event.results[last][0].transcript;
       $scope.vocalResponse = event.results;
-      console.log(name);
+      console.log($scope.name);
+      $scope.$apply(function() {
+        $scope.search = $scope.name;
+        $scope.figureOutItemsToDisplay();
+      });
+      $scope.recognition.stop();
+      console.log("micIsOn: " + $scope.micIsOn);
     }
   }
 ]);
