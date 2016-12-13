@@ -36,12 +36,7 @@
       <button btn-link class="btn" style="width:100%;">
       <img ng-src="{{user.profileImageURL}}" alt="{{user.displayname}}" />
       <h4 class="list-group-item-heading" ng-bind="user.displayName" ></h4>
-      <h4 class="col-sm-6 text-left" ng-bind=user.online></h4>
-      <script>
-        socket.on('connected', function (data) {
-          console.log(data.text);
-        });
-      </script>
+      <!-- <h4 class="col-sm-6 text-left" ng-bind=user.online></h4> -->
       </li>
       </button>
       </a>
