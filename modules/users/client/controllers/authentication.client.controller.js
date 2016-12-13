@@ -11,12 +11,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     // If user is signed in then redirect back home
     if ($scope.authentication.user) {
       $location.path('/');
-
     }
-
-    // socket emitter code should go here in order to show user 'online'
-
-    // If user is signed in then broadcast to server via socket
 
     $scope.signup = function (isValid) {
       $scope.error = null;
@@ -30,6 +25,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         // If successful we assign the response to the global user model
         $scope.authentication.user = response;
+        // Start a socketio room here, make sure you destroy it when they signout
 
         // And redirect to the previous or home page
         $state.go($state.previous.state.name || 'home', $state.previous.params);
@@ -50,8 +46,23 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $http.post('/api/auth/signin', $scope.credentials).success(function (response) {
         // If successful we assign the response to the global user model
         $scope.authentication.user = response;
+        // console.log(Socket);
+        // console.log($scope.authentication.user._id + ' has signed in and should join room' + $scope.authentication.user._id + ' now.');
+
+        //setting online property to true
+        $scope.authentication.user.online[0] = true;
+        console.log($scope.authentication.user.displayName + ' online status is set to ' + $scope.authentication.user.online[0]);
+
+        // start a socketio room here, make sure you destroy it when they signout
+        Socket.connect();
+        Socket.emit('signedIn', 'room' + $scope.authentication.user.firstName + $scope.authentication.user.lastName);
+        // console.log(server.io);
+
 
         // And redirect to the previous or home page
+
+        // console.log('io object: ' + io);
+
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;

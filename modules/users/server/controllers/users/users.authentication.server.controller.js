@@ -1,5 +1,7 @@
 'use strict';
 
+// var socket = require('config/lib/socket.io.js');
+
 /**
  * Module dependencies.
  */
@@ -64,11 +66,18 @@ exports.signin = function (req, res, next) {
       user.password = undefined;
       user.salt = undefined;
 
+      console.log(user.firstName + user.lastName + " has an 'online' status of " + user.online);
+      user.online = true;
+      console.log(user.firstName + user.lastName + " has an 'online' status of " + user.online);
+
       req.login(user, function (err) {
         if (err) {
           res.status(400).send(err);
         } else {
           res.json(user);
+
+          // console.log("users.authentication.server.controller.js is here!!!");
+          // console.log(req.user);
         }
       });
     }

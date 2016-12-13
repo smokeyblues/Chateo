@@ -99,9 +99,22 @@ module.exports = function (app, db) {
 
   // Add an event listener to the 'connection' event
   io.on('connection', function (socket) {
+    // console.log("socket.io.js and the connection event is being read here.");
     config.files.server.sockets.forEach(function (socketConfiguration) {
       require(path.resolve(socketConfiguration))(io, socket);
     });
+    socket.on('signedIn', function (usersRoom) {
+      socket.join(usersRoom);
+      console.log(usersRoom + ' has been created.');
+      console.log("Bo Diddley's Room Object: ");
+      // the log below will output a roomBoDiddley object if one exists.
+      console.log(io.nsps['/'].adapter.rooms.roomBoDiddley);
+      console.log("All Rooms: ");
+      console.log(io.nsps['/'].adapter.rooms);
+    });
+    // socket.on('disconnect', function() {
+    //
+    // });
   });
 
   return server;
