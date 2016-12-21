@@ -33,7 +33,7 @@
       <button btn-link class="btn" style="width:100%;">
       <img ng-src="{{user.profileImageURL}}" alt="{{user.displayName}}" />
       <h4 class="list-group-item-heading" ng-bind="user.displayName" ></h4>
-      <h5 class="col-sm-6 text-left" ng-if="user.online[0]">{{user.displayName}} online status is {{user.online[0]}}</h5>
+      <h5 class="col-sm-6 text-left pull-right" ng-if="user.online">is online</h5>
       </li>
       </button>
       </a>

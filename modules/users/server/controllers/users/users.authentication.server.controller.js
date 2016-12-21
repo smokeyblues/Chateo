@@ -62,12 +62,16 @@ exports.signin = function (req, res, next) {
     if (err || !user) {
       res.status(400).send(info);
     } else {
+      user.online = true;
+      user.save();
       // Remove sensitive data before login
       user.password = undefined;
       user.salt = undefined;
 
       console.log(user.firstName + user.lastName + " has an 'online' status of " + user.online);
-      user.online = true;
+
+
+
       console.log(user.firstName + user.lastName + " has an 'online' status of " + user.online);
 
       req.login(user, function (err) {
@@ -76,18 +80,19 @@ exports.signin = function (req, res, next) {
         } else {
           res.json(user);
 
-          // console.log("users.authentication.server.controller.js is here!!!");
-          // console.log(req.user);
         }
       });
     }
   })(req, res, next);
 };
 
+
 /**
  * Signout
  */
 exports.signout = function (req, res) {
+  req.user.online = false;
+  req.user.save();
   req.logout();
   res.redirect('/');
 };

@@ -68,10 +68,9 @@ var UserSchema = new Schema({
   },
 
   online: {
-    type: [{
       type: Boolean,
       default: false
-    }]
+
   },
 
   password: {

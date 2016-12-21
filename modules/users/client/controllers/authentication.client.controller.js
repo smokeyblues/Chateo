@@ -50,8 +50,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         // console.log($scope.authentication.user._id + ' has signed in and should join room' + $scope.authentication.user._id + ' now.');
 
         //setting online property to true
-        $scope.authentication.user.online[0] = true;
-        console.log($scope.authentication.user.displayName + ' online status is set to ' + $scope.authentication.user.online[0]);
+        // $scope.authentication.user.online[0] = true;
+        console.log($scope.authentication.user.displayName + ' online status is set to ' + $scope.authentication.user.online);
 
         // start a socketio room here, make sure you destroy it when they signout
         Socket.connect();

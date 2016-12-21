@@ -4,7 +4,7 @@ angular.module('users.user').controller('UserDirectoryController', ['$scope', '$
   function ($scope, $filter, User, Socket) {
     User.query(function (data) {
       $scope.users = data;
-      console.log($scope.users[0].online[0]);
+      console.log($scope.users); 
       $scope.userNames = $scope.users.map(function(element) {
         return element.firstName + ' ' + element.lastName
       });
