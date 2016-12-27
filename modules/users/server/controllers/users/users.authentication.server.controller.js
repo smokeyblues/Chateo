@@ -1,7 +1,5 @@
 'use strict';
 
-// var socket = require('config/lib/socket.io.js');
-
 /**
  * Module dependencies.
  */
@@ -63,22 +61,18 @@ exports.signin = function (req, res, next) {
       res.status(400).send(info);
     } else {
       user.online = true;
-      user.save();
-      // Remove sensitive data before login
-      user.password = undefined;
-      user.salt = undefined;
-
-      console.log(user.firstName + user.lastName + " has an 'online' status of " + user.online);
-
-
-
-      console.log(user.firstName + user.lastName + " has an 'online' status of " + user.online);
+      user.save(function() {
+        // Remove sensitive data before login
+        user.password = undefined;
+        user.salt = undefined;
+      });
 
       req.login(user, function (err) {
         if (err) {
           res.status(400).send(err);
         } else {
           res.json(user);
+
 
         }
       });

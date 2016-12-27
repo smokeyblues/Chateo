@@ -55,13 +55,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
         // start a socketio room here, make sure you destroy it when they signout
         Socket.connect();
-        Socket.emit('signedIn', 'room' + $scope.authentication.user.firstName + $scope.authentication.user.lastName);
-        // console.log(server.io);
-
-
-        // And redirect to the previous or home page
-
-        // console.log('io object: ' + io);
+        Socket.emit('signedIn', $scope.authentication.user);
 
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }).error(function (response) {
