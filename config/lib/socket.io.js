@@ -1,5 +1,7 @@
 'use strict';
 
+require('../../modules/users/server/models/user.server.model.js');
+
 // Load the module dependencies
 var config = require('../config'),
   path = require('path'),
@@ -9,6 +11,9 @@ var config = require('../config'),
   cookieParser = require('cookie-parser'),
   passport = require('passport'),
   socketio = require('socket.io'),
+  mongoose = require('mongoose'),
+  passport = require('passport'),
+  User = mongoose.model('User'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session);
 
@@ -99,9 +104,26 @@ module.exports = function (app, db) {
 
   // Add an event listener to the 'connection' event
   io.on('connection', function (socket) {
+    // console.log("socket.io.js and the connection event is being read here.");
     config.files.server.sockets.forEach(function (socketConfiguration) {
       require(path.resolve(socketConfiguration))(io, socket);
     });
+    socket.on('signedIn', function (user) {
+      var roomName = `room${user._id}`;
+      console.log(roomName);
+      socket.join(roomName);
+      console.log(`${user.displayName} joined ${roomName}`);
+      console.log("All Rooms: ");
+      console.log(io.nsps['/'].adapter.rooms);
+    });
+    socket.on('vcInviteReceived', function(inviteData) {
+      var inviteeRoom = `room${inviteData.receiver._id}`
+      var inviterMessage = `Hi from ${inviteData.sender.firstName} ${inviteData.sender.lastName}`
+      console.log(`An invite to ${inviteData.link} was sent to ${inviteData.receiver.firstName} ${inviteData.receiver.lastName}, line 117 of config/lib/socket.io.js`);
+      socket.join(inviteeRoom);
+      socket.broadcast.to(inviteeRoom).emit('triggerInvite', inviteData);
+    });
+
   });
 
   return server;

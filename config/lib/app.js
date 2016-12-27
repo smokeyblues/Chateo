@@ -7,7 +7,8 @@ var config = require('../config'),
   mongoose = require('./mongoose'),
   express = require('./express'),
   chalk = require('chalk'),
-  seed = require('./seed');
+  seed = require('./seed'),
+  socket = require('./socket.io.js');
 
 function seedDB() {
   if (config.seedDB && config.seedDB.seed) {
@@ -15,6 +16,8 @@ function seedDB() {
     seed.start();
   }
 }
+
+// console.log("app.js is being read now.");
 
 // Initialize Models
 mongoose.loadModels(seedDB);

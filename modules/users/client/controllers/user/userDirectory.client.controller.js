@@ -1,17 +1,46 @@
 'use strict';
 
-angular.module('users.user').controller('UserDirectoryController', ['$scope', '$filter', 'User',
-  function ($scope, $filter, User) {
+angular.module('users.user').controller('UserDirectoryController', ['$scope', '$filter', 'User', 'Socket',
+  function ($scope, $filter, User, Socket) {
     User.query(function (data) {
       $scope.users = data;
+      console.log($scope.users);
       $scope.userNames = $scope.users.map(function(element) {
         return element.firstName + ' ' + element.lastName
       });
+
+      $scope.inviteReceived = false;
+
+      $scope.sendInvite = function (to, from) {
+        console.log(from.displayName, 'to', to.displayName);
+        var roomName = 'room' + to._id;
+        var inviteUrl = 'https://meet.jit.si/' + from.firstName + from.lastName + 'meets' + to.firstName + to.lastName
+        console.log(to);
+        var inviteData = {
+          sender: from,
+          receiver: to,
+          link: inviteUrl
+        }
+        Socket.emit('vcInviteReceived', inviteData);
+        console.log('RoomName: ' + roomName);
+
+      }
+
+      Socket.on('triggerInvite', function(inviteData){
+        console.log(inviteData);
+        $scope.inviteReceived = true;
+        $scope.invitation = inviteData;
+        console.log($scope.invitation);
+      });
+
+      $scope.inviteDenied = function() {
+        $scope.inviteReceived = false;
+      };
+
       $scope.grammar = '#JSGF V1.0; grammar userNames; public <userName> = ' + $scope.userNames.join(' | ') + ' ;'
       $scope.buildPager();
       $scope.micIsOn = false;
-      console.log("micIsOn: " + $scope.micIsOn);
-      console.log($scope.userNames);
+      // console.log($scope.userNames);
     });
 
     $scope.buildPager = function () {
@@ -70,7 +99,6 @@ angular.module('users.user').controller('UserDirectoryController', ['$scope', '$
         $scope.figureOutItemsToDisplay();
       });
       $scope.recognition.stop();
-      console.log("micIsOn: " + $scope.micIsOn);
-    }
+    };
   }
 ]);

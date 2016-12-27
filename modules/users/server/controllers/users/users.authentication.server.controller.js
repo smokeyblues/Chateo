@@ -60,25 +60,33 @@ exports.signin = function (req, res, next) {
     if (err || !user) {
       res.status(400).send(info);
     } else {
-      // Remove sensitive data before login
-      user.password = undefined;
-      user.salt = undefined;
+      user.online = true;
+      user.save(function() {
+        // Remove sensitive data before login
+        user.password = undefined;
+        user.salt = undefined;
+      });
 
       req.login(user, function (err) {
         if (err) {
           res.status(400).send(err);
         } else {
           res.json(user);
+
+
         }
       });
     }
   })(req, res, next);
 };
 
+
 /**
  * Signout
  */
 exports.signout = function (req, res) {
+  req.user.online = false;
+  req.user.save();
   req.logout();
   res.redirect('/');
 };
