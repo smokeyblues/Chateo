@@ -109,7 +109,7 @@ module.exports = function (app, db) {
       require(path.resolve(socketConfiguration))(io, socket);
     });
     socket.on('signedIn', function (user) {
-      var roomName = `room${user._id}`;
+      var roomName = "room"+user._id;
       console.log(roomName);
       socket.join(roomName);
       console.log(`${user.displayName} joined ${roomName}`);
