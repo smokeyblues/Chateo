@@ -1214,18 +1214,11 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         // console.log($scope.authentication.user._id + ' has signed in and should join room' + $scope.authentication.user._id + ' now.');
 
         //setting online property to true
-        $scope.authentication.user.online[0] = true;
-        console.log($scope.authentication.user.displayName + ' online status is set to ' + $scope.authentication.user.online[0]);
+        console.log($scope.authentication.user.displayName + ' online status is set to ' + $scope.authentication.user.online);
 
         // start a socketio room here, make sure you destroy it when they signout
         Socket.connect();
-        Socket.emit('signedIn', 'room' + $scope.authentication.user.firstName + $scope.authentication.user.lastName);
-        // console.log(server.io);
-
-
-        // And redirect to the previous or home page
-
-        // console.log('io object: ' + io);
+        Socket.emit('signedIn', $scope.authentication.user);
 
         $state.go($state.previous.state.name || 'home', $state.previous.params);
       }).error(function (response) {
@@ -1497,18 +1490,47 @@ angular.module('users.user').controller('goChatController', ['$scope', '$locatio
 
 'use strict';
 
-angular.module('users.user').controller('UserDirectoryController', ['$scope', '$filter', 'User',
-  function ($scope, $filter, User) {
+angular.module('users.user').controller('UserDirectoryController', ['$scope', '$filter', 'User', 'Socket',
+  function ($scope, $filter, User, Socket) {
     User.query(function (data) {
       $scope.users = data;
+      console.log($scope.users);
       $scope.userNames = $scope.users.map(function(element) {
         return element.firstName + ' ' + element.lastName
       });
+
+      $scope.inviteReceived = false;
+
+      $scope.sendInvite = function (to, from) {
+        console.log(from.displayName, 'to', to.displayName);
+        var roomName = 'room' + to._id;
+        var inviteUrl = 'https://meet.jit.si/' + from.firstName + from.lastName + 'meets' + to.firstName + to.lastName
+        console.log(to);
+        var inviteData = {
+          sender: from,
+          receiver: to,
+          link: inviteUrl
+        }
+        Socket.emit('vcInviteReceived', inviteData);
+        console.log('RoomName: ' + roomName);
+
+      }
+
+      Socket.on('triggerInvite', function(inviteData){
+        console.log(inviteData);
+        $scope.inviteReceived = true;
+        $scope.invitation = inviteData;
+        console.log($scope.invitation);
+      });
+
+      $scope.inviteDenied = function() {
+        $scope.inviteReceived = false;
+      };
+
       $scope.grammar = '#JSGF V1.0; grammar userNames; public <userName> = ' + $scope.userNames.join(' | ') + ' ;'
       $scope.buildPager();
       $scope.micIsOn = false;
-      console.log("micIsOn: " + $scope.micIsOn);
-      console.log($scope.userNames);
+      // console.log($scope.userNames);
     });
 
     $scope.buildPager = function () {
@@ -1567,8 +1589,7 @@ angular.module('users.user').controller('UserDirectoryController', ['$scope', '$
         $scope.figureOutItemsToDisplay();
       });
       $scope.recognition.stop();
-      console.log("micIsOn: " + $scope.micIsOn);
-    }
+    };
   }
 ]);
 
