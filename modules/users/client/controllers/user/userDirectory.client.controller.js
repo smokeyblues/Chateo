@@ -26,6 +26,10 @@ angular.module('users.user').controller('UserDirectoryController', ['$scope', '$
 
       }
 
+      Socket.on('beacon', function(){
+        console.log('socket.io is working');
+      })
+
       Socket.on('triggerInvite', function(inviteData){
         console.log(inviteData);
         $scope.inviteReceived = true;
